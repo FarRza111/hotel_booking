@@ -28,12 +28,12 @@ class Hotel:
 
 
 class ReservationTicket:
+    
     def __init__(self, customer_name, hotel_object):
         self.customer_name = customer_name
         self.hotel = hotel_object
 
     def generate(self):
-
         content = f"""
         Thank you for your reservsation!
         Here are your booking data:
@@ -48,8 +48,8 @@ class CreditCard:
 
     def __init__(self, number):
         self.number = number
+        
     def validate(self, expiration, holder, cvc):
-
         card_data = {"number": self.number, "expiration": expiration,
                      "holder": holder, "cvc": cvc}
         if card_data in df_cards:
@@ -58,6 +58,7 @@ class CreditCard:
             return False
 
 class SecureCreditCard(CreditCard):
+    
     def authenticate(self, given_password):
         password = df_cards_security.loc[df_cards_security.number == self.number, "password"].squeeze()
         if password == given_password:
